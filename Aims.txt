@@ -1,0 +1,4 @@
+Aims:
+
+1. Display list of items ordered by highest profit margin to lowest
+2. Filter this list by trade reliability (Buy and sell prices are consistant and often) you'll have to increment the page number with 

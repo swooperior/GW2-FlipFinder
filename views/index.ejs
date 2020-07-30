@@ -1,0 +1,64 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') -%>
+    <%
+        function convertPrice(n){
+        var g,s,c; //gold, silver bronze vars
+        g = Math.floor(n / 10000);
+        s = Math.floor(((n / 100) % 100));
+        c = Math.floor((n % 100));
+        const gico = "<img src='https://wiki.guildwars2.com/images/d/d1/Gold_coin.png' />";
+        const sico = "<img src='https://wiki.guildwars2.com/images/3/3c/Silver_coin.png' />";
+        const cico = "<img src='https://wiki.guildwars2.com/images/e/eb/Copper_coin.png' />";
+        return(g+gico+s+sico+c+cico);
+    }
+    %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('partials/header') -%>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>GW2 Flip Finder Tool</h1>
+        <p>Only the best flips</p>
+    </div>
+    <div class="table-container">
+        <%- include('partials/table') -%>
+        <% items.map((item)=>{%>
+            <tr>
+                <td>
+                    <%= item.name %>
+                </td>
+                <td>
+                    <%- convertPrice(item.buys.unit_price) %>
+                </td>
+                <td>
+                    <%- convertPrice(item.sells.unit_price) %>
+                </td>
+                <td>
+                    <%- convertPrice(item.margin) %>
+                </td>
+                <td>
+                    <%= item.buys.quantity %>
+                </td>
+                <td>
+                    <%= item.sells.quantity %>
+                </td>
+                
+            </tr>
+          <%}) %>
+    </table>
+    </div>
+</main>
+
+<footer>
+    <%- include('partials/footer') -%>
+</footer>
+
+</body>
+</html>
